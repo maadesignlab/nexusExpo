@@ -59,7 +59,7 @@ export default function LoginForm({
             if (result.success) {
 
                 router.replace(
-                    '/(drawer)/(tabs)/(stack)/landing'
+                    '/(drawer)/(tabs)/dashboard'
                 );
 
             } else {

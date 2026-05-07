@@ -2,7 +2,7 @@ import React from 'react';
 import {Image, View} from "react-native";
 import {DrawerContentScrollView, DrawerItemList} from "@react-navigation/drawer";
 
-const CustomDrawer = (props) => {
+const LeftMainDrawer = (props) => {
     return (
         <DrawerContentScrollView
             scrollEnabled={true}
@@ -10,7 +10,7 @@ const CustomDrawer = (props) => {
             <View className="flex justify-center items-center mx-3, p-10 mb-10 h-[150px] bg-unirLogoBg rounded-md">
                 <View className="flex-1 w-full h-fit items-center self-center absolute">
                     <Image
-                        source={require('../assets/unirLogo.png')}
+                        source={require('../../../assets/unirLogo.png')}
                         style={{
                             width: 150,
                             height: 100,
@@ -24,4 +24,4 @@ const CustomDrawer = (props) => {
         </DrawerContentScrollView>
     );
 }
-export default CustomDrawer;
+export default LeftMainDrawer;
