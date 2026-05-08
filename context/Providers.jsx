@@ -1,9 +1,12 @@
 import { AuthProvider } from "./AuthContext";
+import { CartProvider } from "./CartContext";
 
 export default function Providers({ children }) {
   return (
     <AuthProvider>
-      {children}
+      <CartProvider>
+        {children}
+      </CartProvider>
     </AuthProvider>
   );
 }

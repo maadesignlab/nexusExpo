@@ -1,11 +1,10 @@
 import { Tabs } from "expo-router";
 import { Ionicons } from '@expo/vector-icons';
-import { CartProvider } from '../../../context/CartContext';
 import TopBar from "../../../components/layout/TopBar";
 
 const TabsLayout = () => {
     return (
-        <CartProvider>
+        <>
             <TopBar />
             <Tabs
                 screenOptions={{
@@ -30,7 +29,7 @@ const TabsLayout = () => {
                     }}
                 />
                 <Tabs.Screen
-                    name="library/index"
+                    name="library/library"
                     options={{
                         title: "Library",
                         tabBarIcon: ({ color, size }) => (
@@ -39,7 +38,7 @@ const TabsLayout = () => {
                     }}
                 />
                 <Tabs.Screen
-                    name="coworking"
+                    name="coworking/coworking"
                     options={{
                         title: "Coworking",
                         tabBarIcon: ({ color, size }) => (
@@ -48,7 +47,7 @@ const TabsLayout = () => {
                     }}
                 />
             </Tabs>
-        </CartProvider>
+        </>
     );
 };
 

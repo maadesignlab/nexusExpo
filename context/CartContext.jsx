@@ -1,9 +1,9 @@
 import {
-    createContext,
-    useContext,
-    useEffect,
-    useMemo,
-    useState,
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
 } from "react";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -12,169 +12,175 @@ const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
 
-    const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState([]);
 
-    const [loading, setLoading] = useState(true);
+  const [loading, setLoading] =
+    useState(true);
 
-    // Cargar carrito
-    useEffect(() => {
+  /* LOAD CART */
 
-        const loadCart = async () => {
+  useEffect(() => {
 
-            try {
+    async function loadCart() {
 
-                const savedCart =
-                    await AsyncStorage.getItem(
-                        "nexus_cart"
-                    );
+      try {
 
-                if (savedCart) {
-                    setCart(JSON.parse(savedCart));
-                }
+        const savedCart =
+          await AsyncStorage.getItem(
+            "nexus_cart"
+          );
 
-            } catch (error) {
+        if (savedCart) {
 
-                console.log(
-                    "Error loading cart:",
-                    error
-                );
+          setCart(JSON.parse(savedCart));
 
-            } finally {
+        }
 
-                setLoading(false);
-            }
-        };
+      } catch (error) {
 
-        loadCart();
-
-    }, []);
-
-    // Guardar carrito
-    useEffect(() => {
-
-        if (loading) return;
-
-        const saveCart = async () => {
-
-            try {
-
-                await AsyncStorage.setItem(
-                    "nexus_cart",
-                    JSON.stringify(cart)
-                );
-
-            } catch (error) {
-
-                console.log(
-                    "Error saving cart:",
-                    error
-                );
-            }
-        };
-
-        saveCart();
-
-    }, [cart, loading]);
-
-    const addToCart = (
-        item,
-        quantity = 1
-    ) => {
-
-        setCart(prev => {
-
-            const exists = prev.find(
-                p => p.bookId === item.bookId
-            );
-
-            if (exists) {
-
-                return prev.map(p =>
-                    p.bookId === item.bookId
-                        ? {
-                            ...p,
-                            cantidad:
-                                p.cantidad + quantity,
-                        }
-                        : p
-                );
-            }
-
-            return [
-                ...prev,
-                {
-                    ...item,
-                    cantidad: quantity,
-                },
-            ];
-        });
-    };
-
-    const increaseQty = (bookId) => {
-
-        setCart(prev =>
-            prev.map(item =>
-                item.bookId === bookId
-                    ? {
-                        ...item,
-                        cantidad:
-                            item.cantidad + 1,
-                    }
-                    : item
-            )
+        console.log(
+          "Error loading cart:",
+          error
         );
-    };
 
-    const decreaseQty = (bookId) => {
+      } finally {
 
-        setCart(prev =>
-            prev
-                .map(item =>
-                    item.bookId === bookId
-                        ? {
-                            ...item,
-                            cantidad:
-                                item.cantidad - 1,
-                        }
-                        : item
-                )
-                .filter(
-                    item => item.cantidad > 0
-                )
-        );
-    };
+        setLoading(false);
+      }
+    }
 
-    const removeFromCart = (bookId) => {
+    loadCart();
 
-        setCart(prev =>
-            prev.filter(
-                item => item.bookId !== bookId
-            )
-        );
-    };
+  }, []);
 
-    const clearCart = () => {
+  /* SAVE CART */
 
-        setCart([]);
-    };
+  useEffect(() => {
 
-    const value = useMemo(() => ({
-        cart,
-        addToCart,
-        increaseQty,
-        decreaseQty,
-        removeFromCart,
-        clearCart,
-        loading,
-    }), [cart, loading]);
+    if (loading) return;
 
-    return (
-        <CartContext.Provider value={value}>
-            {children}
-        </CartContext.Provider>
+    AsyncStorage.setItem(
+      "nexus_cart",
+      JSON.stringify(cart)
     );
+
+  }, [cart, loading]);
+
+  /* ADD */
+
+  function addToCart(
+    item,
+    quantity = 1
+  ) {
+
+    setCart(prev => {
+
+      const exists = prev.find(
+        p => p.bookId === item.bookId
+      );
+
+      if (exists) {
+
+        return prev.map(p =>
+          p.bookId === item.bookId
+            ? {
+                ...p,
+                cantidad:
+                  p.cantidad + quantity,
+              }
+            : p
+        );
+      }
+
+      return [
+        ...prev,
+        {
+          ...item,
+          cantidad: quantity,
+        },
+      ];
+    });
+  }
+
+  /* INCREASE */
+
+  function increaseQty(bookId) {
+
+    setCart(prev =>
+      prev.map(item =>
+        item.bookId === bookId
+          ? {
+              ...item,
+              cantidad:
+                item.cantidad + 1,
+            }
+          : item
+      )
+    );
+  }
+
+  /* DECREASE */
+
+  function decreaseQty(bookId) {
+
+    setCart(prev =>
+      prev
+        .map(item =>
+          item.bookId === bookId
+            ? {
+                ...item,
+                cantidad:
+                  item.cantidad - 1,
+              }
+            : item
+        )
+        .filter(
+          item => item.cantidad > 0
+        )
+    );
+  }
+
+  /* REMOVE */
+
+  function removeFromCart(bookId) {
+
+    setCart(prev =>
+      prev.filter(
+        item => item.bookId !== bookId
+      )
+    );
+  }
+
+  /* CLEAR */
+
+  function clearCart() {
+
+    setCart([]);
+  }
+
+  const value = useMemo(() => ({
+    cart,
+    loading,
+    addToCart,
+    increaseQty,
+    decreaseQty,
+    removeFromCart,
+    clearCart,
+  }), [cart, loading]);
+
+  /* 🚨 IMPORTANTE */
+
+  if (loading) {
+    return null;
+  }
+
+  return (
+    <CartContext.Provider value={value}>
+      {children}
+    </CartContext.Provider>
+  );
 };
 
 export const useCart = () => {
-    return useContext(CartContext);
+  return useContext(CartContext);
 };

@@ -1,4 +1,4 @@
-import { apiEndpoints } from "@/lib/apiEndpoints";
+import { apiEndpoints } from "../lib/apiEndpoints";
 
 export const storeService = {
 
