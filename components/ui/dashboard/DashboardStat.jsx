@@ -10,7 +10,7 @@ export default function DashboardStat({
         {value}
       </Text>
 
-      <Text className="mt-1 text-sm text-slate-300">
+      <Text className="mt-1 text-md font-SpaceGroteskRegular text-slate-300">
         {label}
       </Text>
     </View>

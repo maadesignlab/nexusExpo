@@ -51,7 +51,7 @@ export default function HomeView() {
                             }}
                         />
 
-                        <Text className="text-4xl font-bold text-black text-center mt-12">
+                        <Text className="text-4xl font-SpaceGroteskRegular text-black text-center mt-12">
                             UNIR CINEMA
                         </Text>
 

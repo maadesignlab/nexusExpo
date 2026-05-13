@@ -11,13 +11,30 @@ export default function RootLayout() {
 
     // Carga de fuentes
     const [fontsLoaded, error] = useFonts({
-        "Inter-Variable": require(
-            "../assets/fonts/Inter-VariableFont_opsz,wght.ttf"
+        "InterRegular": require(
+            "../assets/fonts/Inter_18pt-Regular.ttf"
         ),
-
-        "Inter-VariableItalic": require(
-            "../assets/fonts/Inter-Italic-VariableFont_opsz,wght.ttf"
+        "InterMedium": require(
+            "../assets/fonts/Inter_18pt-Medium.ttf"
         ),
+        "InterSemiBold": require(
+            "../assets/fonts/Inter_18pt-SemiBold.ttf"
+        ),
+        "InterBold": require(
+            "../assets/fonts/Inter_18pt-Bold.ttf"
+        ),
+        "SpaceGroteskRegular": require(
+            "../assets/fonts/SpaceGrotesk-Regular.ttf"
+        ),
+        "SpaceGroteskMedium": require(
+            "../assets/fonts/SpaceGrotesk-Medium.ttf"
+        ),
+        "SpaceGroteskSemiBold": require(
+            "../assets/fonts/SpaceGrotesk-SemiBold.ttf"
+        ),
+        "SpaceGroteskBold": require(
+            "../assets/fonts/SpaceGrotesk-Bold.ttf"
+        )   
     });
 
     // Ocultar splash cuando todo esté listo

@@ -6,8 +6,14 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'inter-variable': [ 'Inter-Variable', 'sans-serif' ],
-        'inter-variableitalic': [ 'Inter-VariableItalic', 'sans-serif' ],
+        'InterRegular': [ 'InterRegular', 'sans-serif' ],
+        'InterMedium': [ 'InterMedium', 'sans-serif' ],
+        'InterSemiBold': [ 'InterSemiBold', 'sans-serif' ],
+        'InterBold': [ 'InterBold', 'sans-serif' ],
+        'SpaceGroteskRegular': [ 'SpaceGroteskRegular', 'sans-serif' ],
+        'SpaceGroteskMedium': [ 'SpaceGroteskMedium', 'sans-serif' ],
+        'SpaceGroteskSemiBold': [ 'SpaceGroteskSemiBold', 'sans-serif' ],
+        'SpaceGroteskBold': [ 'SpaceGroteskBold', 'sans-serif' ],
       },
       colors: {
         brand: {

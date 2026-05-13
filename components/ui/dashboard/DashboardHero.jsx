@@ -18,7 +18,7 @@ export default function DashboardHero() {
       <View className="flex flex-col justify-between gap-8">
         <View>
           <View className="self-start rounded-full bg-yellow-300 px-4 py-2">
-            <Text className="text-xs font-bold text-slate-950">
+            <Text className="text-md font-SpaceGroteskBold text-slate-950">
               Nexus Universitario
             </Text>
           </View>

@@ -1,19 +1,9 @@
-import {
-  View,
-  Text,
-  Pressable,
-  Image,
-} from "react-native";
-
+import { View, Text, Pressable, Image } from "react-native";
 import { useRouter } from "expo-router";
-
-import Animated, {
-  FadeInDown,
-} from "react-native-reanimated";
-
+import Animated, { FadeInDown, } from "react-native-reanimated";
 import { Ionicons } from "@expo/vector-icons";
-
 import { useCart } from "../../../context/CartContext";
+import { bookImageMap } from "../../../lib/bookImageMap";
 
 export default function BookCard({
   libro,
@@ -69,9 +59,7 @@ export default function BookCard({
         "
       >
         <Image
-          source={{
-            uri: libro.imagen,
-          }}
+          source={bookImageMap[libro.imagen]}
           resizeMode="cover"
           className="h-full w-full"
         />

@@ -19,7 +19,7 @@ export default function DashboardScreen() {
         }}
       >
         <Animated.View entering={FadeInDown.duration(400)}>
-          <Text className="mb-2 text-xs font-bold uppercase tracking-[3px] text-yellow-500">
+          <Text className="mb-2 text-xs font-SpaceGroteskBold uppercase tracking-[3px] text-yellow-500">
             Panel principal
           </Text>
 
