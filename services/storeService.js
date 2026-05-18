@@ -52,6 +52,11 @@ export const storeService = {
     return await apiEndpoints.getLibroPorId(id);
   },
 
+  // 🔹 DETALLE COWORKING
+  async getCoworkingSpaceById(id) {
+    return await apiEndpoints.getCoworkingSpacesById(id);
+  },
+
   // 🔹 HISTORIAL DE COMPRAS
   async getPurchases(userId) {
     const res = await apiEndpoints.getPurchasedItems(userId);
