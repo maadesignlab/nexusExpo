@@ -1,60 +1,46 @@
 import React from 'react';
-import { View, Text, Pressable, StyleSheet } from 'react-native';
+import { View, Text, Pressable } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import Animated, { FadeInDown } from "react-native-reanimated";
 
-export default function CoworkingSiteCard({ space, onPress }) {
+export default function CoworkingSiteCard({ space, onPress, delay = 0 }) {
     const isOccupied = space.ocupado;
 
     return (
-        <View style={styles.cardContainer}>
+        <Animated.View entering={FadeInDown.delay(delay).duration(400)}>
             <Pressable
                 onPress={onPress}
-                style={({ pressed }) => [
-                    styles.card,
-                    { transform: [{ scale: pressed ? 0.97 : 1 }] }
-                ]}
+                className="mb-4 rounded-[28px] border border-slate-200 bg-white p-5 shadow-sm active:scale-[0.98] transition-transform"
             >
-                <View style={styles.headerRow}>
-                    <View style={styles.titleContainer}>
-                        <Text style={styles.title} numberOfLines={1}>{space.nombre}</Text>
-                        <Text style={styles.type}>{space.tipo || 'Espacio'}</Text>
+                <View className="flex-row justify-between items-start mb-3">
+                    <View className="flex-1 pr-2">
+                        <Text className="text-xl font-SpaceGroteskBold text-slate-900" numberOfLines={1}>
+                            {space.nombre}
+                        </Text>
+                        <Text className="text-sm font-InterMedium text-slate-500 mt-1 capitalize">
+                            {space.tipo || 'Espacio'}
+                        </Text>
                     </View>
-                    <View style={[styles.badge, isOccupied ? styles.badgeOccupied : styles.badgeAvailable]}>
-                        <Text style={[styles.badgeText, isOccupied ? styles.textOccupied : styles.textAvailable]}>
+                    
+                    <View className={isOccupied ? "rounded-full px-3 py-1 bg-red-50 border border-red-200" : "rounded-full px-3 py-1 bg-emerald-50 border border-emerald-200"}>
+                        <Text className={isOccupied ? "text-xs font-InterBold text-red-600" : "text-xs font-InterBold text-emerald-600"}>
                             {isOccupied ? 'Ocupado' : 'Disponible'}
                         </Text>
                     </View>
                 </View>
 
-                <View style={styles.footerRow}>
-                    <View style={styles.capacityContainer}>
+                <View className="flex-row items-center justify-between mt-2">
+                    <View className="flex-row items-center">
                         <Ionicons name="people-outline" size={16} color="#64748b" />
-                        <Text style={styles.capacityText}>Capacidad: {space.capacidad}</Text>
+                        <Text className="text-sm font-InterRegular text-slate-500 ml-1">
+                            Capacidad: {space.capacidad} {space.capacidad === 1 ? 'persona' : 'personas'}
+                        </Text>
                     </View>
-                    <View style={styles.arrowIcon}>
+                    <View className="h-8 w-8 items-center justify-center rounded-full bg-slate-100">
                         <Ionicons name="chevron-forward" size={16} color="#0f172a" />
                     </View>
                 </View>
             </Pressable>
-        </View>
+        </Animated.View>
     );
 }
-
-const styles = StyleSheet.create({
-    cardContainer: { marginBottom: 16 },
-    card: { backgroundColor: '#fff', borderRadius: 24, padding: 20, borderColor: '#e2e8f0', borderWidth: 1, shadowColor: '#000', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.05, shadowRadius: 2, elevation: 2 },
-    headerRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 12 },
-    titleContainer: { flex: 1, paddingRight: 8 },
-    title: { fontSize: 20, fontWeight: 'bold', color: '#0f172a' },
-    type: { fontSize: 14, color: '#64748b', marginTop: 4, textTransform: 'capitalize' },
-    badge: { paddingHorizontal: 12, paddingVertical: 4, borderRadius: 9999 },
-    badgeAvailable: { backgroundColor: '#d1fae5' },
-    badgeOccupied: { backgroundColor: '#fee2e2' },
-    badgeText: { fontSize: 12, fontWeight: '600' },
-    textAvailable: { color: '#047857' },
-    textOccupied: { color: '#b91c1c' },
-    footerRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginTop: 8 },
-    capacityContainer: { flexDirection: 'row', alignItems: 'center' },
-    capacityText: { color: '#475569', fontSize: 14, marginLeft: 4 },
-    arrowIcon: { height: 32, width: 32, alignItems: 'center', justifyContent: 'center', borderRadius: 16, backgroundColor: '#f1f5f9' }
-});

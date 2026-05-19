@@ -14,66 +14,34 @@ import RegisterForm from '../components/login/RegisterForm';
 import Logo from '../assets/nexus.svg';
 
 export default function HomeView() {
-
     const [showLogin, setShowLogin] = useState(true);
 
     return (
         <KeyboardAvoidingView
-            className="flex-1"
-            behavior={
-                Platform.OS === 'ios'
-                    ? 'padding'
-                    : 'height'
-            }
-            keyboardVerticalOffset={
-                Platform.OS === 'ios'
-                    ? 0
-                    : 20
-            }
+            className="flex-1 bg-[#F4F7F9]"
+            behavior={Platform.OS === 'ios' ? 'padding' : undefined}
         >
             <ScrollView
-                contentContainerStyle={{
-                    flexGrow: 1,
-                }}
+                contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', paddingHorizontal: 24, paddingVertical: 40 }}
                 keyboardShouldPersistTaps="handled"
+                showsVerticalScrollIndicator={false}
             >
-                <View className="flex-1 justify-center items-center px-4 py-8">
-
-                    {/* Logo */}
-                    <View className="mb-4 items-center">
-
+                {/* Contenedor Full Screen */}
+                <View className="flex-1 w-full justify-center max-w-md self-center">
+                    
+                    {/* Logo Central */}
+                    <View className="items-center mb-10">
                         <Logo
-                            className="mb-4"
-                            style={{
-                                width: 120,
-                                height: 120,
-                                alignSelf: 'center',
-                            }}
+                            style={{ width: 160, height: 70, alignSelf: 'center' }}
+                            resizeMode="contain"
                         />
-
-                        <Text className="text-4xl font-SpaceGroteskRegular text-black text-center mt-12">
-                            UNIR CINEMA
-                        </Text>
-
                     </View>
 
                     {/* Formularios */}
                     {showLogin ? (
-
-                        <LoginForm
-                            onSwitchToRegister={() =>
-                                setShowLogin(false)
-                            }
-                        />
-
+                        <LoginForm onSwitchToRegister={() => setShowLogin(false)} />
                     ) : (
-
-                        <RegisterForm
-                            onSwitchToLogin={() =>
-                                setShowLogin(true)
-                            }
-                        />
-
+                        <RegisterForm onSwitchToLogin={() => setShowLogin(true)} />
                     )}
 
                 </View>

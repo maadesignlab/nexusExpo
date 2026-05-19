@@ -9,7 +9,7 @@ import HomeView from '../views/HomeView';
  */
 export default function HomeScreen() {
     return (
-        <SafeAreaView  className="flex-1 bg-brand-50">
+        <SafeAreaView  className="flex-1 bg-[#F4F7F9]">
             <StatusBar barStyle="auto" />
             <HomeView />
         </SafeAreaView>
