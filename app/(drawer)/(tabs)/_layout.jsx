@@ -46,6 +46,16 @@ const TabsLayout = () => {
                         ),
                     }}
                 />
+                <Tabs.Screen
+                    name="account"
+                    options={{
+                        title: "Cuenta",
+                        href: null,
+                        tabBarIcon: ({ color, size }) => (
+                            <Ionicons name="person" size={size} color={color} />
+                        ),
+                    }}
+                />
             </Tabs>
         </>
     );
