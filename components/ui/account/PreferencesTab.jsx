@@ -4,19 +4,14 @@ import { Ionicons } from "@expo/vector-icons";
 import Animated, { FadeInDown } from "react-native-reanimated";
 
 export default function PreferencesTab() {
-  // Estado local para los switches de Notificaciones
+
   const [reminders, setReminders] = useState(true);
   const [updates, setUpdates] = useState(true);
   const [promo, setPromo] = useState(false);
-
-  // Estado local para los switches de Privacidad
   const [publicProfile, setPublicProfile] = useState(false);
-  const [showActivity, setShowActivity] = useState(true);
-
-  // Estado local para los switches de Apariencia
+  const [showActivity, setShowActivity] = useState(true);  
   const [darkMode, setDarkMode] = useState(false);
 
-  // Acción al guardar preferencias
   const handleSave = () => {
     Alert.alert(
       "Preferencias Guardadas",

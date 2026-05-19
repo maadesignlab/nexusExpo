@@ -21,7 +21,7 @@ export default function ProfileTab() {
         <View className="relative mb-4">
           {/* Avatar con borde circular y sombra */}
           <Image
-            source={{ uri: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=250&q=80" }}
+            source={require('../../../assets/img/usuario.png')}
             className="w-28 h-28 rounded-full border-4 border-slate-100"
           />
           <View className="absolute bottom-1 right-1 bg-emerald-500 w-5 h-5 rounded-full border-2 border-white" />
