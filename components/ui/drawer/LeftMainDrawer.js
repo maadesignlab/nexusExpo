@@ -29,10 +29,40 @@ const LeftMainDrawer = (props) => {
                     />
                 </View>
 
-                {/* Renderizar items automáticos */}
-                <DrawerItemList {...props} />
-
-                {/* Item Personalizado: Mi Cuenta */}
+                {/* Items Personalizados */}
+                <DrawerItem
+                    label="Inicio"
+                    labelStyle={{ color: '#0F172A', fontFamily: 'InterSemiBold', fontSize: 14 }}
+                    icon={({ focused, color, size }) => (
+                        <Ionicons name="home-outline" size={24} color="#0F172A" />
+                    )}
+                    onPress={() => {
+                        props.navigation.closeDrawer();
+                        router.push('/dashboard');
+                    }}
+                />
+                <DrawerItem
+                    label="Librería"
+                    labelStyle={{ color: '#0F172A', fontFamily: 'InterSemiBold', fontSize: 14 }}
+                    icon={({ focused, color, size }) => (
+                        <Ionicons name="book-outline" size={24} color="#0F172A" />
+                    )}
+                    onPress={() => {
+                        props.navigation.closeDrawer();
+                        router.push('/library/library');
+                    }}
+                />
+                <DrawerItem
+                    label="Coworking"
+                    labelStyle={{ color: '#0F172A', fontFamily: 'InterSemiBold', fontSize: 14 }}
+                    icon={({ focused, color, size }) => (
+                        <Ionicons name="briefcase-outline" size={24} color="#0F172A" />
+                    )}
+                    onPress={() => {
+                        props.navigation.closeDrawer();
+                        router.push('/coworking/coworking');
+                    }}
+                />
                 <DrawerItem
                     label="Mi cuenta"
                     labelStyle={{ color: '#0F172A', fontFamily: 'InterSemiBold', fontSize: 14 }}
