@@ -144,7 +144,7 @@ export default function LibraryScreen() {
           gap: 14,
         }}
         renderItem={({ item, index }) => (
-          <View className="flex-1">
+          <View className="w-1/2">
             <BookCard
               libro={item}
               delay={index * 60}
