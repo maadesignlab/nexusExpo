@@ -395,7 +395,7 @@ export default function PaymentScreen() {
           absolute bottom-0 left-0 right-0
           border-t border-slate-200
           bg-white
-          px-5 py-5
+          px-5 py-5 pb-10
         "
       >
         <Pressable

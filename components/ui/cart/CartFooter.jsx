@@ -22,7 +22,7 @@ export default function CartFooter({
     >
       <View
         className="
-          flex-row items-center justify-between
+          flex-row items-center justify-between pb-10
         "
       >
         <View>

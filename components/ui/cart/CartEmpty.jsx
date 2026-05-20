@@ -62,7 +62,7 @@ export default function CartEmpty() {
 
         <Pressable
           onPress={() =>
-            router.push("/library/library")
+            router.push("/library")
           }
           className="
             mt-7

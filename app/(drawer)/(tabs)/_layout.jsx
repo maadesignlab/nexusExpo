@@ -34,9 +34,9 @@ const TabsLayout = () => {
                 />
 
                 <Tabs.Screen
-                    name="library/library"
+                    name="library"
                     options={{
-                        title: "Library",
+                        title: "Librería",
                         tabBarIcon: ({ color, size }) => (
                             <Ionicons
                                 name="book"
@@ -48,7 +48,7 @@ const TabsLayout = () => {
                 />
 
                 <Tabs.Screen
-                    name="coworking/coworking"
+                    name="coworking"
                     options={{
                         title: "Coworking",
                         tabBarIcon: ({ color, size }) => (
@@ -74,13 +74,17 @@ const TabsLayout = () => {
                         ),
                     }}
                 />
+
                 <Tabs.Screen
                     name="account"
                     options={{
                         title: "Cuenta",
-                        href: null,
                         tabBarIcon: ({ color, size }) => (
-                            <Ionicons name="person" size={size} color={color} />
+                            <Ionicons
+                                name="person"
+                                size={size}
+                                color={color}
+                            />
                         ),
                     }}
                 />

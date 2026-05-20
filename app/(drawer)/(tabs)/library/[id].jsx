@@ -16,9 +16,9 @@ import {
 
 import { Ionicons } from "@expo/vector-icons";
 
-import { storeService } from "../../../services/storeService";
-import { bookImageMap } from "../../../lib/bookImageMap";
-import { useCart } from "../../../context/CartContext";
+import { storeService } from "../../../../services/storeService";
+import { bookImageMap } from "../../../../lib/bookImageMap";
+import { useCart } from "../../../../context/CartContext";
 
 export default function BookDetailScreen() {
   const { id } = useLocalSearchParams();
@@ -28,42 +28,64 @@ export default function BookDetailScreen() {
   const { addToCart } = useCart();
 
   const [book, setBook] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+
+  const [loading, setLoading] =
+    useState(true);
+
+  const [error, setError] =
+    useState(null);
+
+  /* IMPORTANT */
+  if (!id) return null;
+
+  /* LOAD */
 
   useEffect(() => {
+    if (!id) return;
+
     loadBook();
   }, [id]);
 
   async function loadBook() {
     try {
       setLoading(true);
+
       setError(null);
 
-      const response = await storeService.getLibros();
+      const response =
+        await storeService.getLibros();
 
       const books = Array.isArray(response)
         ? response
         : response?.data || [];
 
+      if (!id) return;
+
       const selectedBook = books.find(
         (item) =>
-          item.id?.toString() === id?.toString()
+          item.id?.toString() ===
+          id?.toString()
       );
 
       if (!selectedBook) {
         setError("Libro no encontrado.");
+
         return;
       }
 
       setBook(selectedBook);
     } catch (err) {
       console.log(err);
-      setError("No fue posible cargar el detalle del libro.");
+
+      setError(
+        "No fue posible cargar el detalle del libro."
+      );
     } finally {
       setLoading(false);
     }
   }
+
+  /* CART */
 
   function handleAddToCart() {
     if (!book) return;
@@ -74,6 +96,8 @@ export default function BookDetailScreen() {
     });
   }
 
+  /* LOADING */
+
   if (loading) {
     return (
       <View className="flex-1 items-center justify-center bg-[#F8FAFC]">
@@ -81,6 +105,8 @@ export default function BookDetailScreen() {
       </View>
     );
   }
+
+  /* ERROR */
 
   if (error || !book) {
     return (
@@ -111,7 +137,8 @@ export default function BookDetailScreen() {
     );
   }
 
-  const imageSource = bookImageMap[book.imagen];
+  const imageSource =
+    bookImageMap[book.imagen];
 
   const sinopsis =
     book.sinopsis ||
@@ -130,6 +157,7 @@ export default function BookDetailScreen() {
       <View className="px-5 pt-5">
 
         {/* BACK */}
+
         <Pressable
           onPress={() => router.back()}
           className="
@@ -147,6 +175,7 @@ export default function BookDetailScreen() {
         </Pressable>
 
         {/* IMAGE */}
+
         <View
           className="
             overflow-hidden rounded-[32px]
@@ -183,6 +212,7 @@ export default function BookDetailScreen() {
         </View>
 
         {/* CONTENT */}
+
         <View className="mt-7">
           {book.masVendido && (
             <View className="mb-4 self-start rounded-full bg-yellow-300 px-4 py-2">
@@ -234,6 +264,7 @@ export default function BookDetailScreen() {
           </Text>
 
           {/* SINOPSIS */}
+
           <View className="mt-7 rounded-[28px] bg-white p-5">
             <Text
               className="mb-3 text-base text-slate-950"
@@ -255,6 +286,7 @@ export default function BookDetailScreen() {
           </View>
 
           {/* ACTION */}
+
           <Pressable
             onPress={handleAddToCart}
             className="

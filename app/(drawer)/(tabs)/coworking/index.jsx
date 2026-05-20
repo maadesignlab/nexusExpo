@@ -140,7 +140,7 @@ export default function CoworkingScreen() {
 
     return (
         <SafeAreaView className="flex-1 bg-[#F8FAFC]">
-            <View className="flex-1 px-5 pt-5">
+            <View className="flex-1 px-5">
                 <SectionList
                     sections={espaciosAgrupados}
                     keyExtractor={(item) => (item.id ? item.id.toString() : item.nombre)}

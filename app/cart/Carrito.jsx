@@ -102,7 +102,7 @@ export default function CartScreen() {
 
       <SafeAreaView
         edges={["bottom"]}
-        className="flex-1 bg-[#F8FAFC]"
+        className="flex-1 pt-6 bg-[#F8FAFC]"
       >
         {!cart.length ? (
           <CartEmpty />

@@ -49,7 +49,11 @@ const LeftMainDrawer = (props) => {
                     )}
                     onPress={() => {
                         props.navigation.closeDrawer();
-                        router.push('/library/library');
+
+                        requestAnimationFrame(() => {
+                            router.push("/library");
+                        });
+
                     }}
                 />
                 <DrawerItem
@@ -60,7 +64,7 @@ const LeftMainDrawer = (props) => {
                     )}
                     onPress={() => {
                         props.navigation.closeDrawer();
-                        router.push('/coworking/coworking');
+                        router.push('/coworking');
                     }}
                 />
                 <DrawerItem

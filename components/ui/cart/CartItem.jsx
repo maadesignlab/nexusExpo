@@ -6,7 +6,7 @@ import {
 } from "react-native";
 
 import { Ionicons } from "@expo/vector-icons";
-
+import { bookImageMap } from "../../../lib/bookImageMap";
 import QuantitySelector from "./QuantitySelector";
 
 export default function CartItem({
@@ -34,9 +34,7 @@ export default function CartItem({
     >
       <View className="flex-row gap-4">
         <Image
-          source={{
-            uri: item.imagen,
-          }}
+          source={bookImageMap[item.imagen]}
           resizeMode="cover"
           className="
             h-32 w-24
