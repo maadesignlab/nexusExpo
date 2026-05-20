@@ -49,7 +49,7 @@ export default function HomeView() {
 
     return (
         <KeyboardAvoidingView
-            className="flex-1"
+            className="flex-1 bg-white"
             behavior={
                 Platform.OS === 'ios'
                     ? 'padding'
@@ -62,6 +62,7 @@ export default function HomeView() {
             }
         >
             <ScrollView
+                className="bg-white"
                 contentContainerStyle={{
                     flexGrow: 1,
                 }}
