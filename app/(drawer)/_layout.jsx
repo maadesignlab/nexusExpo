@@ -34,6 +34,13 @@ const LeftMainDrawerLayout = () => {
                     drawerIcon: () => <Ionicons name="people-outline" size={24} color="black"/>
                 }}
             />
+            <Drawer.Screen
+                name="library/[id]"
+                options={{
+                    drawerItemStyle: { display: 'none' },
+                    headerShown: false
+                }}
+            />
         </Drawer>
     );
 }
